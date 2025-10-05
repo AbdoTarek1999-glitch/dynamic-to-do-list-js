@@ -1,51 +1,48 @@
-// Wait for the DOM to load before running the script
+// 🧠 Wait for the DOM to fully load before running JS
 document.addEventListener('DOMContentLoaded', () => {
-
-    // Select important elements
+    // 🎯 Select important DOM elements
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Function to add a new task
+    // 📝 Function to add a new task
     function addTask() {
-        const taskText = taskInput.value.trim(); // remove extra spaces
+        const taskText = taskInput.value.trim(); // Get input text & remove spaces
 
-        // Check if input is empty
         if (taskText === '') {
             alert('Please enter a task!');
             return;
         }
 
-        // Create new list item (li)
+        // Create a new list item
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create remove button
+        // Create a remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
         removeBtn.className = 'remove-btn';
 
-        // Add event to remove task
+        // Remove task when the button is clicked
         removeBtn.onclick = () => {
             taskList.removeChild(li);
         };
 
-        // Append button to li, then li to list
+        // Append the button and the task to the list
         li.appendChild(removeBtn);
         taskList.appendChild(li);
 
-        // Clear input field
+        // Clear the input field
         taskInput.value = '';
     }
 
-    // Add event listener for button click
+    // 🖱 Add task when clicking the "Add Task" button
     addButton.addEventListener('click', addTask);
 
-    // Add event listener for "Enter" key
+    // ⌨️ Add task when pressing "Enter"
     taskInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             addTask();
         }
     });
-
 });
